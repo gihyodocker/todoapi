@@ -13,7 +13,6 @@ func main() {
 
 	env, err := todoapi.CreateEnv()
 	if err != nil {
-		fmt.Println(env.Bind)
 		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
