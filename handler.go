@@ -12,11 +12,13 @@ import (
 	gorp "gopkg.in/gorp.v1"
 )
 
+// Handlerの中でDBへクエリを発行するため、DB接続の構造体を持つ
 type TodoHandler struct {
 	master *gorp.DbMap
 	slave  *gorp.DbMap
 }
 
+// Handlerの作成関数
 func NewTodoHandler(master *gorp.DbMap, slave *gorp.DbMap) http.Handler {
 	return &TodoHandler{
 		master: master,
@@ -24,6 +26,7 @@ func NewTodoHandler(master *gorp.DbMap, slave *gorp.DbMap) http.Handler {
 	}
 }
 
+// HTTPリクエストを受け、ビジネスロジックを実行してレスポンスを返す
 func (h TodoHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	log.Printf("[%s] RemoteAddr=%s\tUserAgent=%s", r.Method, r.RemoteAddr, r.Header.Get("User-Agent"))
