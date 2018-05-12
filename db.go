@@ -8,15 +8,6 @@ import (
 	gorp "gopkg.in/gorp.v1"
 )
 
-type Todo struct {
-	ID      uint      `db:"id"      json:"id"`
-	Title   string    `db:"title"   json:"title"`
-	Content string    `db:"content" json:"content"`
-	Status  string    `db:"status"  json:"status"`
-	Created time.Time `db:"created" json:"created"`
-	Updated time.Time `db:"updated" json:"updated"`
-}
-
 func CreateDbMap(dbURL string) (*gorp.DbMap, error) {
 
 	ds, err := createDatasource(dbURL)
@@ -45,4 +36,13 @@ func createDatasource(dbURL string) (*sql.DB, error) {
 
 	db.SetMaxIdleConns(2)
 	return db, nil
+}
+
+type Todo struct {
+	ID      uint      `db:"id"      json:"id"`
+	Title   string    `db:"title"   json:"title"`
+	Content string    `db:"content" json:"content"`
+	Status  string    `db:"status"  json:"status"`
+	Created time.Time `db:"created" json:"created"`
+	Updated time.Time `db:"updated" json:"updated"`
 }
