@@ -1,4 +1,4 @@
-FROM golang:1.9
+FROM golang:1.13
 
 WORKDIR /
 ENV GOPATH /go
